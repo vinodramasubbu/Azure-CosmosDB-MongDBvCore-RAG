@@ -1,0 +1,5 @@
+POST http://localhost:7071/api/VectorSearch HTTP/1.1
+Content-Type: application/json
+
+{"session_id": "vinod", "prompt": "what is perk plus?"}
+
