@@ -17,9 +17,9 @@ The RAG pattern for Azure Cosmos DB for MongoDB vCore vector search involves the
 4. Leverage the natural language understanding and reasoning capabilities of the Azure OpenAI. to generate a response to the initial prompt.
 5. Save both the user prompt and the corresponding OpenAI response in a MongoDB collection. This collection will serve as the context  for subsequent follow-up questions and conversations.
 
-To facilitate this process, the data intended for search needs to be segmented and embedded for vector search. The upcoming section illustrates the utilization of LangChain librarie
+To facilitate this process, the data intended for search needs to be segmented and embedded for vector search. The upcoming section illustrates the utilization of LangChain libraries.
 
-### Prepare data and create index for vector search in Azure Cosmos DB for MongoDB vCore  
+### Prepare data and create index for vector search 
 Create a python virtual environment and install required packages.
 ```
 python -m venv .venv
@@ -29,15 +29,15 @@ Ensure that the required packages are installed and accessible in the Python env
 ```
 pip install pymongo langchain openai tiktoken azure-storage-blob pdf2image tabulate unstructured[pdf]
 ```
-Note: Find attached a iPyhton notebook (cosmosdbLLMSearch-Contoso-employee-HandBook.ipynb) that you can use to create vectorr index and test the RAG process.
+Note: Find attached a iPyhton notebook (cosmosdbLLMSearch-Contoso-employee-HandBook.ipynb) that you can use to create vector index and test the RAG process.
 
-### Loading data from storage account and split it into smaller chunks:
+### Loading data from Azure Storage Account and split it into smaller chunks:
 
 Copy the PDF documents from "data" folder in this repository to a Azure Storage Account container 
 
 ![Source File](source-files.png)
 
-Execute the following code that uses Lang Chain's document loaders and text splitter modules to load PDF documents, split it into smaller chunks and store the result in a 'documents' object.
+Execute the following code that uses LangChain's document loaders and text splitter modules to load PDF documents, split it into smaller chunks and store the result in a 'documents' object.
 
 - `conn_str`: This is the connect string of the storage account ot ADLS where your pdf files are placed".
 - `container`: This is the name of the storage account or ADLS container name where your pdf files are placed".
@@ -74,7 +74,7 @@ Here's a breakdown of the CosmosDB parameters:
 - `DB_NAME, COLLECTION_NAME `: database name and collectionname will be derived from the above NAMESPACE parameter.
 
 ```
-# Create a vector index and load data using LangChin libraries
+# Create a vector index and load data using LangChian libraries
 from pymongo import MongoClient
 
 from langchain.vectorstores.azure_cosmos_db import AzureCosmosDBVectorSearch,CosmosDBSimilarityType
@@ -109,7 +109,7 @@ Screenshot of Vector content stored in Azure Cosmos DB for MongoDB vCore.
 
 ![Azure Cosmos DB for MongoDB vCore - Vector collection](vector-content-in-cosmos-mongovcore.png)
 
-### Test the RAG pattern, session state, memory retrieval functionalities using Azure Cosmodb for MongoDb v core and Azure Open AI :
+### Test the RAG pattern, chat memory functionalities using Azure Cosmodb for MongoDb vCore and Azure OpenAI
 
 Replace the follwowing with your environemtn specific values
 
@@ -212,7 +212,7 @@ You can find the applicatoin URL in the Azure Static Web App home page
 
 This sample application demonstrates how to use Azure Cosmos DB for MongoDB vCore as a central database to securely store and perform vector searchs, and it also shows how to it stores and retains history in the same database to answer subsequent questions.
 
-Additionally, this appliation demostrates the Retrieval Augmented Generation technique orchestrated by Azure Function to perform vector search and pass relavent data into your OpenAI models using Lang Chain librairs for reasoning.
+Additionally, this appliation demostrates the Retrieval Augmented Generation technique orchestrated by Azure Function to perform vector search and pass relavent data into your OpenAI models using LangChain librairs for reasoning.
 
 Screenshot of Chat application showing vector search and data retrival from  Azure Cosmos DB for MongoDB vCore.
 
