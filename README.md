@@ -74,7 +74,7 @@ Here's a breakdown of the CosmosDB parameters:
 - `DB_NAME, COLLECTION_NAME `: database name and collectionname will be derived from the above NAMESPACE parameter.
 
 ```
-# Create a vector index and load data using LangChian libraries
+# Create a vector index and load data using LangChain libraries
 from pymongo import MongoClient
 
 from langchain.vectorstores.azure_cosmos_db import AzureCosmosDBVectorSearch,CosmosDBSimilarityType
