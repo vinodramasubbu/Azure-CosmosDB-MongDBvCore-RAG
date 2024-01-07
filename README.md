@@ -109,7 +109,7 @@ Screenshot of Vector content stored in Azure Cosmos DB for MongoDB vCore.
 
 ![Azure Cosmos DB for MongoDB vCore - Vector collection](vector-content-in-cosmos-mongovcore.png)
 
-### Test the RAG pattern and chat memory functionalities using Azure Cosmodb for MongoDb vCore and Azure OpenAI
+### Test the RAG pattern and chat memory functionalities
 
 Replace the following with your environment specific values
 
