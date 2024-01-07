@@ -19,7 +19,7 @@ The RAG pattern for Azure Cosmos DB for MongoDB vCore vector search involves the
 
 To facilitate this process, the data intended for search needs to be segmented and embedded for vector search. The upcoming section illustrates the utilization of LangChain librarie
 
-### Preparing data for vectort Search 
+### Prepare data and create index for vector search in Azure Cosmos DB for MongoDB vCore  
 Create a python virtual environment and install required packages.
 ```
 python -m venv .venv
@@ -29,15 +29,15 @@ Ensure that the required packages are installed and accessible in the Python env
 ```
 pip install pymongo langchain openai tiktoken azure-storage-blob pdf2image tabulate unstructured[pdf]
 ```
-Note: Find attached a iPyhton notebook (cosmosdbLLMSearch-Contoso-employee-HandBook.ipynb) that you can use to execute the below code ,create and test the RAG process.
+Note: Find attached a iPyhton notebook (cosmosdbLLMSearch-Contoso-employee-HandBook.ipynb) that you can use to create vectorr index and test the RAG process.
 
 ### Loading data from storage account and split it into smaller chunks:
 
-Place the pdf documents from "doc" folder in Azure Storage Account container 
+Copy the PDF documents from "data" folder in this repository to a Azure Storage Account container 
 
 ![Source File](source-files.png)
 
-Execute the following code that usage of LangChain's document loaders and text splitter modules to load PDF documents, split it into smaller chunks and store the result in a 'documents' object.
+Execute the following code that uses Lang Chain's document loaders and text splitter modules to load PDF documents, split it into smaller chunks and store the result in a 'documents' object.
 
 - `conn_str`: This is the connect string of the storage account ot ADLS where your pdf files are placed".
 - `container`: This is the name of the storage account or ADLS container name where your pdf files are placed".
@@ -64,6 +64,7 @@ Here's a breakdown of the Azure Open AI parameters:
 ### Create embedding and load to Azure Cosmodb for MongoDb vCore:
 
 The following script sets up a connection to a Azure Cosmodb for MongoDb v core , creates an index for vector search and loads the data into it. Note: the `openai_embeddings` object defined in the previous step is used to generate embeddings for the text data in 'documents' object before loading it into the vector index.
+
 Replace the connection string for the MongoDB database, the name of the index to create, and the namespace for the MongoDB collection. Note: The namespace is split into the database name and the collection name.
 
 Here's a breakdown of the CosmosDB parameters:
@@ -146,8 +147,6 @@ qa = RetrievalQA.from_chain_type(
     verbose=True
 )
 
-
-# You can create the tool to pass to an agent
 tools = [
     Tool("Contoso Electronics Handbook and benefits Search",
     description = "use this tool to search for information related to contoso electronics employee benefits and handbook",
@@ -171,8 +170,6 @@ prompt = ZeroShotAgent.create_prompt(
     input_variables=["input", "chat_history", "agent_scratchpad"],
 )
 
-# Rest of the code...
-
 agent = initialize_agent(
     agent='chat-conversational-react-description',
     tools=tools,
@@ -184,12 +181,12 @@ agent = initialize_agent(
 agent.run(input="what are difference between stand and plus plans offered to contoso employees?")
 ```
 
-## Follow the instructions in these link to setup Azure Static webapp and Azure Functions API and it publish you application.
+## Follow the instructions in these link to setup Azure Static web App and Azure Functions and publish the application.
 
     - https://learn.microsoft.com/en-us/azure/static-web-apps/getting-started?tabs=react
     - https://learn.microsoft.com/en-us/azure/static-web-apps/add-api?tabs=vanilla-javascript
 
-- After the Azure Static Web App is created , right click on the Static web app and clone the repository and copy the followiing files to the clsoned respository
+- After the Azure Static Web App is created , right click on the Static web app and clone the repository and copy the followiing files to the cloned respository.
 
         ├── api
         │   ├── VectorSearch
@@ -207,7 +204,7 @@ agent.run(input="what are difference between stand and plus plans offered to con
 
 ## Open you Chat application and test.
 
-You can find the applicatoin URl in the Azure Static Webapp home page
+You can find the applicatoin URL in the Azure Static Web App home page
 
 ![App URL](chat-link.png)
 
