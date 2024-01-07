@@ -109,9 +109,9 @@ Screenshot of Vector content stored in Azure Cosmos DB for MongoDB vCore.
 
 ![Azure Cosmos DB for MongoDB vCore - Vector collection](vector-content-in-cosmos-mongovcore.png)
 
-### Test the RAG pattern, chat memory functionalities using Azure Cosmodb for MongoDb vCore and Azure OpenAI
+### Test the RAG pattern and chat memory functionalities using Azure Cosmodb for MongoDb vCore and Azure OpenAI
 
-Replace the follwowing with your environemtn specific values
+Replace the following with your environment specific values
 
 - `openai_api_version`: This is the version of the OpenAI API to use. In this case, it's set to "2023-07-01-preview".
 - `openai_api_key`: This is the API key used to authenticate with the OpenAI API. 
