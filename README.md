@@ -1,4 +1,4 @@
-# Chat with Enterprise data using Azure OpenAI and Azure Cosmos DB for MongoDB vCore vector search  
+# Chat with Enterprise data using Azure OpenAI and Azure Cosmos DB for MongoDB vCore 
 
 ## Scope
 
